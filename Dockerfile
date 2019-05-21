@@ -7,10 +7,13 @@ ENV EASYBUILD_PREFIX=/modules
 ENV MODULES_HOME=/home/modules
 ENV ALL_MODULES=${EASYBUILD_PREFIX}/modules/all
 
+RUN mkdir -p $EASYBUILD_PREFIX $MODULES_HOME
+
+COPY init_easybuild.sh ${MODULES_HOME}/.
+
 # Create Modules user & Easybuild init script. Practices by dtu.dk
 # https://wiki.fysik.dtu.dk/niflheim/EasyBuild_modules#installing-easybuild specify MODULES_HOME
-RUN mkdir -p $EASYBUILD_PREFIX $MODULES_HOME && \
-  groupadd -g 984 modules && \
+RUN groupadd -g 984 modules && \
   useradd -ms /bin/bash -c "Modules user" -d $MODULES_HOME -u 984 -g modules modules && \
   chown -R modules:modules $EASYBUILD_PREFIX $MODULES_HOME && \
   chmod -R 775 $EASYBUILD_PREFIX $MODULES_HOME
@@ -25,13 +28,7 @@ ENV EASYBUILD_PREFIX=/modules
 ENV ALL_MODULES=${EASYBUILD_PREFIX}/modules/all
 ENV MODULEPATH=/modules/modules/all
 
-COPY init_easybuild.sh .
-
 RUN /bin/bash -c "source /etc/profile.d/z00_lmod.sh" && \
-    curl -O https://raw.githubusercontent.com/easybuilders/easybuild-framework/develop/easybuild/scripts/bootstrap_eb.py && \
-    python bootstrap_eb.py $EASYBUILD_PREFIX && \
-    rm -f bootstrap_eb.py && \
-    echo "source /etc/profile.d/z00_lmod.sh" >> ~/.bashrc && \
-    chmod u+x init_easybuild.sh
+    echo "source /etc/profile.d/z00_lmod.sh" >> ~/.bashrc
 
 VOLUME [ "/ebs", "/modules" ]
