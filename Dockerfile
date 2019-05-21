@@ -25,7 +25,7 @@ ENV EASYBUILD_PREFIX=/modules
 ENV ALL_MODULES=${EASYBUILD_PREFIX}/modules/all
 ENV MODULEPATH=/modules/modules/all
 
-COPY init_easybuild.sh ~/.
+COPY init_easybuild.sh .
 
 RUN /bin/bash -c "source /etc/profile.d/z00_lmod.sh" && \
     curl -O https://raw.githubusercontent.com/easybuilders/easybuild-framework/develop/easybuild/scripts/bootstrap_eb.py && \
