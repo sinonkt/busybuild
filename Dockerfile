@@ -30,4 +30,4 @@ RUN /bin/bash -c "source /etc/profile.d/z00_lmod.sh" && \
     rm -f bootstrap_eb.py && \
     echo "source /etc/profile.d/z00_lmod.sh" >> ~/.bashrc
 
-VOLUME [ "${EASYBUILD_PREFIX}/ebs", "$MODULEPATH"]
+VOLUME [ "$EASYBUILD_PREFIX" ]
