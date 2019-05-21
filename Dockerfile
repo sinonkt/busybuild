@@ -32,6 +32,6 @@ RUN /bin/bash -c "source /etc/profile.d/z00_lmod.sh" && \
     python bootstrap_eb.py $EASYBUILD_PREFIX && \
     rm -f bootstrap_eb.py && \
     echo "source /etc/profile.d/z00_lmod.sh" >> ~/.bashrc && \
-    chmod u+x init_easybuild
+    chmod u+x init_easybuild.sh
 
 VOLUME [ "/ebs", "/modules" ]
