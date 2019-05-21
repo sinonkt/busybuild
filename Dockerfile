@@ -4,15 +4,16 @@ LABEL maintainer="oatkrittin@gmail.com"
 
 ENV EASYBUILD_MODULES_TOOL=Lmod
 ENV EASYBUILD_PREFIX=/home/opt/modules
+ENV MODULES_HOME=/home/modules
 ENV ALL_MODULES=${EASYBUILD_PREFIX}/modules/all
 
 # Create Modules user & Easybuild init script. Practices by dtu.dk
 # https://wiki.fysik.dtu.dk/niflheim/EasyBuild_modules#installing-easybuild specify MODULES_HOME
 RUN mkdir -p $EASYBUILD_PREFIX && \
   groupadd -g 984 modules && \
-  useradd -ms /bin/bash -c "Modules user" -d $EASYBUILD_PREFIX -u 984 -g modules modules && \
-  chown -R modules:modules $EASYBUILD_PREFIX && \
-  chmod -R 775 $EASYBUILD_PREFIX
+  useradd -ms /bin/bash -c "Modules user" -d $MODULES_HOME -u 984 -g modules modules && \
+  chown -R modules:modules $MODULES_HOME && \
+  chmod -R 775 $MODULES_HOME
 
 # Switch to user `modules` to install EasyBuild
 USER modules
