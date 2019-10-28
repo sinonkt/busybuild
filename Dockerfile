@@ -18,6 +18,9 @@ RUN groupadd -g 1000 modules && \
   chown -R modules:modules $EASYBUILD_PREFIX $MODULES_HOME && \
   chmod -R 775 $EASYBUILD_PREFIX $MODULES_HOME /usr/local/bin
 
+RUN yum update -y && \
+  yum install -y git vim
+
 # Switch to user `modules` to install EasyBuild
 USER modules
 WORKDIR $MODULES_HOME
