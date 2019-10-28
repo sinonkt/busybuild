@@ -13,8 +13,8 @@ COPY init_easybuild.sh ${MODULES_HOME}/.
 
 # Create Modules user & Easybuild init script. Practices by dtu.dk
 # https://wiki.fysik.dtu.dk/niflheim/EasyBuild_modules#installing-easybuild specify MODULES_HOME
-RUN groupadd -g 984 modules && \
-  useradd -ms /bin/bash -c "Modules user" -d $MODULES_HOME -u 984 -g modules modules && \
+RUN groupadd -g 1000 modules && \
+  useradd -ms /bin/bash -c "Modules user" -d $MODULES_HOME -u 1000 -g modules modules && \
   chown -R modules:modules $EASYBUILD_PREFIX $MODULES_HOME && \
   chmod -R 775 $EASYBUILD_PREFIX $MODULES_HOME /usr/local/bin
 
