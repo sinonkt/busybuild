@@ -18,7 +18,7 @@ RUN groupadd -g 1000 modules && \
   chown -R modules:modules $EASYBUILD_PREFIX $MODULES_HOME && \
   chmod -R 775 $EASYBUILD_PREFIX $MODULES_HOME /usr/local/bin
 
-RUN yum remove epel-release && \
+RUN yum remove -y epel-release && \
   wget http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-9.noarch.rpm && \
   rpm -ivh epel-release-7-9.noarch.rpm && \
   yum update -y && \
