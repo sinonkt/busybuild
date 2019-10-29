@@ -19,8 +19,8 @@ RUN groupadd -g 1000 modules && \
   chmod -R 775 $EASYBUILD_PREFIX $MODULES_HOME /usr/local/bin
 
 RUN yum remove -y epel-release && \
-  wget http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-9.noarch.rpm && \
-  rpm -ivh epel-release-7-9.noarch.rpm && \
+  wget https://rpmfind.net/linux/centos/7.7.1908/extras/x86_64/Packages/epel-release-7-11.noarch.rpm && \
+  rpm -ivh epel-release-7-11.noarch.rpm && \
   yum update -y && \
   yum install -y git vim
 
