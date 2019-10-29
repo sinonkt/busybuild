@@ -25,7 +25,8 @@ RUN yum remove -y epel-release && \
   yum install -y git vim \
     openssl-devel \
     libopenssl-devel \
-    libssl-dev
+    libssl-dev \
+    patch
 
 # Switch to user `modules` to install EasyBuild
 USER modules
@@ -41,3 +42,5 @@ RUN /bin/bash -c "source /etc/profile.d/z00_lmod.sh" && \
     echo "source /etc/profile.d/z00_lmod.sh" >> ~/.bashrc
 
 VOLUME [ "/ebs", "/modules" ]
+
+USER root
