@@ -22,7 +22,10 @@ RUN yum remove -y epel-release && \
   wget https://rpmfind.net/linux/centos/7.7.1908/extras/x86_64/Packages/epel-release-7-11.noarch.rpm && \
   rpm -ivh epel-release-7-11.noarch.rpm && \
   yum update -y && \
-  yum install -y git vim
+  yum install -y git vim \
+    openssl-devel \
+    libopenssl-devel \
+    libssl-dev
 
 # Switch to user `modules` to install EasyBuild
 USER modules
