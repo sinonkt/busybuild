@@ -41,4 +41,6 @@ ENV MODULEPATH=/modules/modules/all
 RUN /bin/bash -c "source /etc/profile.d/z00_lmod.sh" && \
     echo "source /etc/profile.d/z00_lmod.sh" >> ~/.bashrc
 
+RUN chmod 777 /var/log
+
 VOLUME [ "/ebs", "/modules" ]
