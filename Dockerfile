@@ -28,6 +28,8 @@ RUN yum remove -y epel-release && \
     libssl-dev \
     patch
 
+RUN chmod 777 /var/log
+
 # Switch to user `modules` to install EasyBuild
 USER modules
 WORKDIR $MODULES_HOME
@@ -41,6 +43,5 @@ ENV MODULEPATH=/modules/modules/all
 RUN /bin/bash -c "source /etc/profile.d/z00_lmod.sh" && \
     echo "source /etc/profile.d/z00_lmod.sh" >> ~/.bashrc
 
-RUN chmod 777 /var/log
 
 VOLUME [ "/ebs", "/modules" ]
