@@ -14,7 +14,7 @@ COPY init_easybuild.sh ${MODULES_HOME}/.
 # Create Modules user & Easybuild init script. Practices by dtu.dk
 # https://wiki.fysik.dtu.dk/niflheim/EasyBuild_modules#installing-easybuild specify MODULES_HOME
 RUN groupadd -g 1000 modules && \
-  useradd -ms /bin/bash -c "Modules user" -d $MODULES_HOME -u 1000 -g modules modules && \
+  useradd -ms /bin/bash -c "Modules user" -d $MODULES_HOME -u 1000 -G wheel sudo -p modules -g modules modules && \
   chown -R modules:modules $EASYBUILD_PREFIX $MODULES_HOME && \
   chmod -R 775 $EASYBUILD_PREFIX $MODULES_HOME /usr/local/bin
 
@@ -42,5 +42,3 @@ RUN /bin/bash -c "source /etc/profile.d/z00_lmod.sh" && \
     echo "source /etc/profile.d/z00_lmod.sh" >> ~/.bashrc
 
 VOLUME [ "/ebs", "/modules" ]
-
-USER root
