@@ -22,10 +22,12 @@ RUN yum remove -y epel-release && \
   wget https://rpmfind.net/linux/centos/7.7.1908/extras/x86_64/Packages/epel-release-7-11.noarch.rpm && \
   rpm -ivh epel-release-7-11.noarch.rpm && \
   yum update -y && \
+  yum group install -y "Development Tools" && \
   yum install -y git vim \
     openssl-devel \
     libopenssl-devel \
     libssl-dev \
+    glibc-devel \
     patch
 
 RUN chmod 777 /var/log
