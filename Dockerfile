@@ -28,6 +28,7 @@ RUN yum remove -y epel-release && \
     libopenssl-devel \
     libssl-dev \
     glibc-devel \
+    glibc \
     patch
 
 RUN chmod 777 /var/log
