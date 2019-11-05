@@ -30,7 +30,10 @@ RUN yum remove -y epel-release && \
     glibc-devel \
     glibc \
     gcc-gfortran \
-    patch
+    patch && \
+  yum install -y centos-release-scl && \
+  yum install -y devtoolset-8 && \
+  scl enable devtoolset-8 -- bash
 
 RUN chmod 777 /var/log
 
@@ -45,6 +48,7 @@ ENV ALL_MODULES=${EASYBUILD_PREFIX}/modules/all
 ENV MODULEPATH=/modules/modules/all
 
 RUN /bin/bash -c "source /etc/profile.d/z00_lmod.sh" && \
-    echo "source /etc/profile.d/z00_lmod.sh" >> ~/.bashrc
+    echo "source /etc/profile.d/z00_lmod.sh" >> ~/.bashrc && \
+    echo "source /opt/rh/devtoolset-8/enable" >> ~/.bash_profile
 
 VOLUME [ "/ebs", "/modules" ]
