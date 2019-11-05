@@ -29,6 +29,7 @@ RUN yum remove -y epel-release && \
     libssl-dev \
     glibc-devel \
     glibc \
+    gcc-gfortran \
     patch
 
 RUN chmod 777 /var/log
@@ -45,6 +46,5 @@ ENV MODULEPATH=/modules/modules/all
 
 RUN /bin/bash -c "source /etc/profile.d/z00_lmod.sh" && \
     echo "source /etc/profile.d/z00_lmod.sh" >> ~/.bashrc
-
 
 VOLUME [ "/ebs", "/modules" ]
